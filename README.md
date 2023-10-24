@@ -13,7 +13,7 @@ With Sales & Dungeons you can create highly customizable handouts, quick referen
 Most Thermal Printer are small in size and can be taken with you and kept right at the gaming table. Use-cases range from printing out magic items, spells
 or a letter that the group found to little character sheets of your players to use as DM note. The possibilities are nearly endless!
 
-[Printer Setup](https://github.com/BigJk/snd/wiki/Printer-Setup) • [Tested Printer](https://github.com/BigJk/snd/wiki/Printer-Settings) • [Wiki](https://github.com/BigJk/snd/wiki)
+[Printer Setup](https://sales-and-dungeons.app/docs/printer/setup/) • [Tested Printer](https://sales-and-dungeons.app/docs/printer/models) • [Wiki](https://sales-and-dungeons.app/docs/intro)
 
 **Important:** If you have trouble getting this to work it's best to drop by our [Discord](https://discord.gg/5MUZEjc).
 
@@ -37,7 +37,7 @@ or a letter that the group found to little character sheets of your players to u
   - CUPS (Linux, Mac)
   - Serial
 - Import & Export templates and data sources
-- Fast access to external [data sources](https://github.com/BigJk/snd/wiki/Data-Sources) like Open5e (instant access to SRD monsters, spells and more)
+- Fast access to external [data sources](https://sales-and-dungeons.app/docs/data-source/) like Open5e (instant access to SRD monsters, spells and more)
 - Import data from other sources:
    - CSV
    - [FoundryVTT](https://foundryvtt.com/) Modules
@@ -49,9 +49,42 @@ or a letter that the group found to little character sheets of your players to u
 
 You can find the latest version on the release page:
 - https://github.com/BigJk/snd/releases
-- **Linux / Mac**:
-   - You might need to ``chmod +x`` the executable before you can run it.
-   - Always run from the terminal instead of double clicking the executable! (e.g. run ``./Sales\ &\ Dungeons``)
+
+### Mac & Linux
+
+- If you are on a unix system you can use the install script to download and install the latest version of Sales & Dungeons automatically
+- The script will create a ``snd`` folder in your home directory
+- To update to the newest version just run the command again. Your user data won't be deleted.
+
+**Open your terminal and copy and paste the following command:**
+
+```
+curl -s https://raw.githubusercontent.com/BigJk/snd/master/install.sh | bash
+```
+   
+### :whale: Docker
+
+The headless version of Sales & Dungeons (using LibUSB) is also available via a docker container:
+1. ``docker pull ghcr.io/bigjk/snd:master`` ([container](https://github.com/BigJk/snd/pkgs/container/snd))
+2. ``docker run --expose 7123:7123 --device=/dev/bus/usb -v /some/place/to/persist:/app/userdata ghcr.io/bigjk/snd:master`` (change ``/some/place/to/persist`` to a folder where the user data should be persisted to)
+3. Open ``http://127.0.0.1:7123`` in your favorite browser
+
+<details><summary>Docker Compose Example</summary>
+
+```
+version: "3"
+services:
+  snd:
+    image: ghcr.io/bigjk/snd:master
+    ports:
+      - "7123:7123"
+    devices:
+      - "/dev/bus/usb"
+    volumes:
+      - "/some/place/to/persist:/app/userdata"
+```
+
+</details>
 
 ## Printer Requirements
 
@@ -62,7 +95,7 @@ In general the rule of thumb is:
 - Most epson thermal printer obviously support it
 - A lot of older Serial printer (like Metapace T-1) also support it
 
-More specific information about tested printers can be found in the wiki: [Printer-Settings](https://github.com/BigJk/snd/wiki/Printer-Settings)
+More specific information about tested printers can be found in the wiki: [Printer-Settings](https://sales-and-dungeons.app/docs/printer/models)
 
 ## How It Works
 
@@ -88,13 +121,19 @@ to the "draw image" command of the printer.
 
 ## Printers, Templating & Building
 
-If you want to see what printers were already tested, which settings they need, how the templates work or how you can build Sales & Dungeons yourself please visit the [**wiki**](https://github.com/BigJk/snd/wiki).
+If you want to see what printers were already tested, which settings they need, how the templates work or how you can build Sales & Dungeons yourself please visit the [**wiki**](https://sales-and-dungeons.app/docs/intro).
 
 ## Thanks to all contributors ❤
 
 <a href="https://github.com/BigJk/snd/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=BigJk/snd" />
 </a>
+
+## Thanks to JetBrains
+
+This Project is supported with a JetBrains License through the [Open Source Support Program](https://www.jetbrains.com/community/opensource).
+
+<img width="140" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo.">
 
 ## Credits
 
